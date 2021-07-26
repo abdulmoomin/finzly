@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="amoomin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PAYMENT"/>
+            </not>
+        </preConditions>
+        <comment>
+            If Data migration happened before release, no need to create table
+        </comment>
+        <createTable tableName="PAYMENT">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="PAYMENT_ID" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="CUSTOMER_ID" type="varchar(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="PAYMENT_DATE" type="varchar(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="PAYMENT_AMOUNT" type="double">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="PRINCIPAL_AMOUNT" type="double">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="PROJECTED_INTEREST" type="double">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="PAYMENT_STATUS" type="varchar(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+
+</databaseChangeLog>

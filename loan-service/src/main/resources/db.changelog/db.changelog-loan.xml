@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="amoomin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="LOAN"/>
+            </not>
+        </preConditions>
+        <comment>
+            If Data migration happened before release, no need to create table
+        </comment>
+        <createTable tableName="LOAN">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CUSTOMER_ID" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="CUSTOMER_NAME" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="TRADE_DATE" type="varchar(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="LOAN_AMOUNT" type="double">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="LOAN_START_DATE" type="varchar(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="MATURITY_DATE" type="varchar(50)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="PAYMENT_FREQUENCY" type="varchar(50)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="PAYMENT_TERM" type="integer">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="INTEREST_RATE" type="double">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="LOAN_STATUS" type="varchar(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+
+</databaseChangeLog>
